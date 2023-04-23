@@ -10,9 +10,6 @@ import androidx.room.Room
 
 
 class LoginFragement : Fragment() {
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,7 +23,7 @@ class LoginFragement : Fragment() {
         val db = AppDatabase.buildDatabase(requireActivity())
         val userDao = db?.getUserDao()
         val textView = requireActivity().findViewById<TextView>(R.id.textView5)
-        textView.text = userDao?.getUsersByFirstName("morad")?.get(0)?.firstName
+       // textView.text = userDao?.getUsersByFirstName("morad")?.get(0)?.firstName
 
     }
 
