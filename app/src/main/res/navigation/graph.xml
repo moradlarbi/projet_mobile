@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_welcome_sceen">
     <action
         android:id="@+id/action_welcome_to_login"
-        app:destination="@id/loginFragement" />
+        app:destination="@id/fragment1" />
     </fragment>
 
 </navigation>
