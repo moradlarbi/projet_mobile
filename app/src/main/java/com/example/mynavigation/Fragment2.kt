@@ -1,14 +1,13 @@
 package com.example.mynavigation
 
+import android.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import com.example.mynavigation.databinding.Fragment1Binding
 import com.example.mynavigation.databinding.Fragment2Binding
 
 
@@ -31,6 +30,8 @@ class Fragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myModel = ViewModelProvider(requireActivity()).get(MyModel::class.java)
-
+        //Toast.makeText(requireActivity(),myModel.data.toString(),Toast.LENGTH_SHORT).show()
+        val  restaurant = myModel.data.first()
+        binding.textView10.text = restaurant.name
     }
 }
