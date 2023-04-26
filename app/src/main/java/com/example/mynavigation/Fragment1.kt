@@ -53,8 +53,8 @@ class Fragment1 : Fragment() {
     }
     fun loadData():List<Restaurant> {
         val data = mutableListOf<Restaurant>()
-        data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
-        data.add(Restaurant("Movie 2",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Papa Pizza",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Mama Pizza",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
         data.add(Restaurant("Movie 3",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
         data.add(Restaurant("Movie 4",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
         data.add(Restaurant("Movie 5",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
