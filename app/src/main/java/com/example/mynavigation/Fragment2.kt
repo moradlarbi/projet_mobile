@@ -31,6 +31,6 @@ class Fragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myModel = ViewModelProvider(requireActivity()).get(MyModel::class.java)
-        Toast.makeText(requireActivity(),myModel.data.toString(),Toast.LENGTH_SHORT).show()
+
     }
 }

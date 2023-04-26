@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.mynavigation.R
@@ -33,7 +34,17 @@ class Fragment1 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         myModel = ViewModelProvider(requireActivity()).get(MyModel::class.java)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        binding.recyclerView.adapter = RestaurantAdapter(loadData(),requireActivity())
+        binding.recyclerView.adapter = RestaurantAdapter(loadData(),requireActivity()).apply {
+            onItemClick = { restaurant ->
+            // Handle item click and pass data to Fragment2
+            // Set the data in MyModel
+            //always add it in position 0
+            myModel.data.add(0,restaurant)
+
+            findNavController().navigate(R.id.action_fragment1_to_fragment2)
+        } }
+
+
 
         /*binding.button.setOnClickListener {
                 myModel.data.add("test")
@@ -43,13 +54,13 @@ class Fragment1 : Fragment() {
     fun loadData():List<Restaurant> {
         val data = mutableListOf<Restaurant>()
         data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
-        data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
-        data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
-        data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
-        data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
-        data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
-        data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
-        data.add(Restaurant("Movie 1",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Movie 2",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Movie 3",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Movie 4",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Movie 5",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Movie 6",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Movie 7",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
+        data.add(Restaurant("Movie 8",R.drawable.restaurant,"geo:36,3?q=Alger","indien", 4.5F,"0555125555","morad@esi.dz","fb://page/218641444910278","https://www.instagram.com/lamsaty.oran/","fb://page/218641444910278","https://www.facebook.com/Restaurant.Arabesque2016"))
 
         return data
     }

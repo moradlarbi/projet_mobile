@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mynavigation.databinding.RestaurantLayoutBinding
 
 public class RestaurantAdapter(val data:List<Restaurant>, val ctxt: Context):RecyclerView.Adapter<RestaurantAdapter.MyViewHolder>(){
+    var onItemClick: ((Restaurant) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(RestaurantLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -77,6 +79,10 @@ public class RestaurantAdapter(val data:List<Restaurant>, val ctxt: Context):Rec
             intent.putExtra("restaurant","${data[position].name}")
             ctxt.startActivity(intent)
         }*/
+        holder.binding.imageView6.setOnClickListener {
+            // Invoke callback function and pass clicked restaurant data
+            onItemClick?.invoke(data[position])
+        }
 
 
     }
