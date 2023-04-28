@@ -45,6 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="DELIVER"
+        android:textStyle="bold"
+        android:textFontWeight="700"
         android:textColor="@color/white"
         android:textSize="25dp"
 
