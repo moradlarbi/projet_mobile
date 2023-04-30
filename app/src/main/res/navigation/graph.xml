@@ -23,15 +23,26 @@
         android:id="@+id/loginFragement"
         android:name="com.example.mynavigation.LoginFragement"
         android:label="fragment_login_fragement"
-        tools:layout="@layout/fragment_login_fragement" />
+        tools:layout="@layout/fragment_login_fragement" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragement_to_fragment1"
+            app:destination="@id/fragment1" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.mynavigation.RegisterFragement"
+        android:label="Register Fragment" />
     <fragment
         android:id="@+id/welcomeScreen"
         android:name="com.example.mynavigation.welcomeSceen"
         android:label="fragment_welcome_screen"
         tools:layout="@layout/fragment_welcome_sceen">
-    <action
-        android:id="@+id/action_welcome_to_login"
-        app:destination="@id/stepSlider1" />
+        <action
+            android:id="@+id/action_welcomeScreen_to_stepSlider1"
+            app:destination="@id/stepSlider1" />
     </fragment>
     <fragment
         android:id="@+id/stepSlider1"
@@ -62,8 +73,7 @@
         tools:layout="@layout/fragment_step_slider_three"
         >
         <action
-            android:id="@+id/action_goToReastaurants"
-            app:destination="@id/fragment1" />
-
+            android:id="@+id/action_stepSliderThree_to_loginFragement"
+            app:destination="@id/loginFragement" />
     </fragment>
 </navigation>
