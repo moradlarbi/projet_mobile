@@ -1,10 +1,6 @@
 package com.example.mynavigation
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface UserDao {
@@ -16,4 +12,8 @@ interface UserDao {
     fun updateUser(user:User)
     @Delete
     fun deleteUser(user:User)
+
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @Query("SELECT * FROM users WHERE username = :username AND password = :password")
+    fun getUser(username: String, password: String): User?
 }

@@ -7,5 +7,7 @@ data class User(
     @PrimaryKey(autoGenerate = true)
     var id: Int?=null,
     var firstName:String?,
-    var lastName:String?
+    var lastName:String?,
+    var username: String?,
+    var password: String?
 )

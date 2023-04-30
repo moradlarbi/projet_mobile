@@ -44,7 +44,7 @@ class stepSliderThree : Fragment() {
 
         val button: ImageView = view.findViewById(R.id.imageView12)
         button.setOnClickListener {
-            findNavController().navigate(R.id.action_goToReastaurants)
+            findNavController().navigate(R.id.action_stepSliderThree_to_loginFragement)
         }
     }
 

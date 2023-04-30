@@ -61,7 +61,7 @@ class welcomeSceen : Fragment() {
 
         val button: Button = view.findViewById(R.id.startButton)
         button.setOnClickListener {
-            findNavController().navigate(R.id.action_welcome_to_login)
+            findNavController().navigate(R.id.action_welcomeScreen_to_stepSlider1)
         }
     }
 
