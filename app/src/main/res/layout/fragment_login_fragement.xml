@@ -10,9 +10,9 @@
 
 
     <EditText
-        android:id="@+id/username_edit_text"
+        android:id="@+id/fullname_edit_text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="70dp"
         android:backgroundTint="#F1E5E5"
@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginHorizontal="0dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="#EDE3E3"
@@ -35,17 +35,17 @@
         android:inputType="textPassword"
         android:textColor="#F3EFEF"
         android:textColorHint="#F4EFEF"
-        app:layout_constraintEnd_toEndOf="@+id/username_edit_text"
+        app:layout_constraintEnd_toEndOf="@+id/fullname_edit_text"
         app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@+id/username_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/username_edit_text" />
+        app:layout_constraintStart_toStartOf="@+id/fullname_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/fullname_edit_text" />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:backgroundTint="#F5B065"
+        android:backgroundTint="#F4942C"
         android:paddingHorizontal="40dp"
         android:paddingVertical="10dp"
         android:text="Login"
@@ -58,7 +58,7 @@
         android:id="@+id/register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#F5B065"
+        android:backgroundTint="#F4942C"
         android:paddingHorizontal="40dp"
         android:paddingVertical="10dp"
         android:text="Register"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:text="Login to your account"
-        android:textColor="#F5B065"
+        android:textColor="#F4942C"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

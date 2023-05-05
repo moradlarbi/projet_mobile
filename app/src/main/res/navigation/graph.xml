@@ -18,7 +18,11 @@
         android:id="@+id/fragment2"
         android:name="com.example.mynavigation.Fragment2"
         android:label="fragment_2"
-        tools:layout="@layout/fragment_2" />
+        tools:layout="@layout/fragment_2" >
+        <action
+            android:id="@+id/action_fragment2_to_menuItemFragement"
+            app:destination="@id/menuItemFragement" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragement"
         android:name="com.example.mynavigation.LoginFragement"
@@ -76,4 +80,8 @@
             android:id="@+id/action_stepSliderThree_to_loginFragement"
             app:destination="@id/loginFragement" />
     </fragment>
+    <fragment
+        android:id="@+id/menuItemFragement"
+        android:name="com.example.mynavigation.MenuItemFragement"
+        android:label="MenuItemFragement" />
 </navigation>
