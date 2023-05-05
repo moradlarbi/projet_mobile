@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
@@ -21,15 +22,26 @@ class LoginFragement : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLoginFragementBinding.inflate(inflater, container, false)
         userDao = AppDatabase.getDatabase(requireContext()).userDao()
-
+        val pref = requireContext().getSharedPreferences("fileName",Context.MODE_PRIVATE)
+        val con = pref.getBoolean("connected", false)
+        if (con) {
+            findNavController().navigate(R.id.action_loginFragement_to_fragment1)
+        }
         binding.loginButton.setOnClickListener {
-            /*val username = binding.usernameEditText.text.toString().trim()
+            val username = binding.fullnameEditText.text.toString().trim()
             val password = binding.passwordEditText.text.toString().trim()
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
-                val user = runBlocking { userDao.getUser(username, password) }
+                if (username == "morad" && password =="morad") {
+                    pref.edit {
+                        putBoolean("connected"
+                            ,true)
+                    }
+                    findNavController().navigate(R.id.action_loginFragement_to_fragment1)
+                }
+                //val user = runBlocking { userDao.getUser(username, password) }
 
-                if (user != null) {
+                /*if (user != null) {
                     // Successful login
 
                     val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
@@ -45,11 +57,11 @@ class LoginFragement : Fragment() {
                 } else {
                     // Failed login
                     Toast.makeText(requireContext(), "Invalid username or password", Toast.LENGTH_SHORT).show()
-                }
+                }*/
             } else {
                 Toast.makeText(requireContext(), "Please enter username and password", Toast.LENGTH_SHORT).show()
-            }*/
-            findNavController().navigate(R.id.action_loginFragement_to_fragment1)
+            }
+
         }
 
         binding.registerButton.setOnClickListener {
