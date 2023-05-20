@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener{
             when (it.itemId) {
                 R.id.menu_home -> replaceFragment(Fragment1())
-                R.id.menu_profile -> replaceFragment(Profile())
+                R.id.menu_profile -> replaceFragment(ProfilePage())
                 R.id.menu_card -> replaceFragment(Mycard())
                 R.id.menu_restos -> replaceFragment(Fragment1())
                 R.id.menu_notif -> replaceFragment(Notifications())
