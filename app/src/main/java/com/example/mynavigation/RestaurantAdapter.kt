@@ -1,11 +1,13 @@
 package com.example.mynavigation;
-import android.content.Context;
+import android.content.Context
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mynavigation.databinding.RestaurantLayoutBinding
+import com.squareup.picasso.Picasso
 
 public class RestaurantAdapter(val data:List<Restaurant>, val ctxt: Context):RecyclerView.Adapter<RestaurantAdapter.MyViewHolder>(){
     var onItemClick: ((Restaurant) -> Unit)? = null
@@ -21,7 +23,8 @@ public class RestaurantAdapter(val data:List<Restaurant>, val ctxt: Context):Rec
 
             textView.text = data[position].name
             textView3.text = data[position].CuisineType
-            imageView6.setImageResource(data[position].logo)
+            Picasso.get().load(data[position].logo).into(imageView6)
+            //imageView6.setImageResource(data[position].logo)
         }
 
         holder.binding.imageView7.setOnClickListener(){
@@ -30,17 +33,17 @@ public class RestaurantAdapter(val data:List<Restaurant>, val ctxt: Context):Rec
                 ctxt.startActivity(intent)
             }
             catch (e: Exception){
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data[position].fcbWeb))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data[position].fcb))
                 ctxt.startActivity((intent))
             }
         }
         holder.binding.imageView9.setOnClickListener(){
             try {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data[position].instagramWeb))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data[position].instagram))
                 ctxt.startActivity(intent)
             }
             catch (e: Exception){
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data[position].instagramWeb))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data[position].instagram))
                 ctxt.startActivity((intent))
             }
         }
@@ -64,23 +67,19 @@ public class RestaurantAdapter(val data:List<Restaurant>, val ctxt: Context):Rec
                 print(e.message)
             }
         }
-        holder.binding.imageView4.setOnClickListener(){
+        holder.binding.imageView4.setOnClickListener {
             try {
-                val data = Uri.parse("${data[position].location}")
-                val intent = Intent(Intent.ACTION_VIEW, data)
+                val latitude = data[position].latitude
+                val longitude = data[position].longitude
+                val geoUri = Uri.parse("geo:$latitude,$longitude")
+                val intent = Intent(Intent.ACTION_VIEW, geoUri)
                 ctxt.startActivity(intent)
-            }
-            catch (e: Exception){
-                print(e.message)
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
-        /*holder.itemView.setOnClickListener {
-            val intent= Intent(ctxt,MainActivity2::class.java)
-            intent.putExtra("restaurant","${data[position].name}")
-            ctxt.startActivity(intent)
-        }*/
-        holder.binding.imageView6.setOnClickListener {
-            // Invoke callback function and pass clicked restaurant data
+
+        holder.binding.imageContainer.setOnClickListener {
             onItemClick?.invoke(data[position])
         }
 

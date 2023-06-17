@@ -1,3 +1,3 @@
 package com.example.mynavigation
 
-data class Menu(val name:String)
+data class Menu(var name:String , var nbItems:Int)
