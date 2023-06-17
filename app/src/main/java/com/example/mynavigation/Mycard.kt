@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mynavigation.databinding.FragmentMycardBinding
 import com.example.mynavigation.databinding.FragmentNotificationsBinding
@@ -33,23 +35,23 @@ class Mycard : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        binding.recyclerView.adapter = CartAdapter(requireActivity() ,loadData()).apply{}
+        binding.recyclerView.adapter = CartAdapter(requireActivity() ,loadData()).apply {
+            onItemClick = { restaurant ->
+                // Handle item click and pass data to Fragment2
+                // Set the data in MyModel
+                //always add it in position 0
+                Toast.makeText(context , "de" , Toast.LENGTH_SHORT).show()
+            } }
 
     }
-    fun loadData():List<Menu> {
+    fun loadData(): List<Menu> {
+
         val data = mutableListOf<Menu>()
 
-        data.add(Menu("Menu 1"))
-        data.add(Menu("Menu 2"))
-        data.add(Menu("Menu 3"))
-        data.add(Menu("Menu 1"))
-        data.add(Menu("Menu 2"))
-        data.add(Menu("Menu 3"))
-        data.add(Menu("Menu 1"))
-        data.add(Menu("Menu 2"))
-        data.add(Menu("Menu 3"))
-
-
+        data.add(Menu("Menu 1" , 5 ))
+        data.add(Menu("Menu 1" , 5 ))
+        data.add(Menu("Menu 1" , 5 ))
+        data.add(Menu("Menu 1" , 5 ))
 
         return data
     }

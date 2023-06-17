@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import com.example.mynavigation.databinding.MenuLayoutBinding
 import com.example.mynavigation.databinding.RestaurantLayoutBinding
+import com.squareup.picasso.Picasso
 
-class MenuAdapter(private val context: Context , private val menuList : List<Menu>) : RecyclerView.Adapter<MenuAdapter.MyViewHolder>() {
+class MenuAdapter(private val context: Context , private val menuList : List<MenuItem>) : RecyclerView.Adapter<MenuAdapter.MyViewHolder>() {
     var onItemClick: ((Unit) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuAdapter.MyViewHolder {
         return MenuAdapter.MyViewHolder(
@@ -37,6 +38,9 @@ class MenuAdapter(private val context: Context , private val menuList : List<Men
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.apply {
             textView16.text = menuList[position].name
+            textView18.text = menuList[position].name
+            textView20.text = menuList[position].price.toString()
+            Picasso.get().load(menuList[position].image).into(imageView18)
         }
         holder.binding.addBtn.setOnClickListener(){
             it.findNavController().navigate(R.id.action_fragment2_to_menuItemFragement)
