@@ -13,7 +13,7 @@ import com.example.mynavigation.databinding.FragmentNotificationsBinding
 
 class Mycard : Fragment() {
     private lateinit var binding: FragmentMycardBinding
-
+    private lateinit var cartDatabaseHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +34,8 @@ class Mycard : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        cartDatabaseHelper = DatabaseHelper(requireContext())
+
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         binding.recyclerView.adapter = CartAdapter(requireActivity() ,loadData()).apply {
             onItemClick = { restaurant ->
@@ -44,16 +46,12 @@ class Mycard : Fragment() {
             } }
 
     }
-    fun loadData(): List<Menu> {
+    fun loadData(): List<CartItem> {
 
-        val data = mutableListOf<Menu>()
+        // Retrieve menu items from the database
+        val cartItems = cartDatabaseHelper.getCartItems()
 
-        data.add(Menu("Menu 1" , 5 ))
-        data.add(Menu("Menu 1" , 5 ))
-        data.add(Menu("Menu 1" , 5 ))
-        data.add(Menu("Menu 1" , 5 ))
-
-        return data
+        return cartItems
     }
 
 }

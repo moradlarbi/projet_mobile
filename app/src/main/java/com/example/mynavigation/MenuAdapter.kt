@@ -1,5 +1,6 @@
 package com.example.mynavigation
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
@@ -16,8 +19,9 @@ import com.example.mynavigation.databinding.MenuLayoutBinding
 import com.example.mynavigation.databinding.RestaurantLayoutBinding
 import com.squareup.picasso.Picasso
 
-class MenuAdapter(private val context: Context , private val menuList : List<MenuItem>) : RecyclerView.Adapter<MenuAdapter.MyViewHolder>() {
+class MenuAdapter(private val context: ViewModelStoreOwner, private val menuList : List<MenuItem>) : RecyclerView.Adapter<MenuAdapter.MyViewHolder>() {
     var onItemClick: ((Unit) -> Unit)? = null
+    lateinit var myModel: MenuModel
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuAdapter.MyViewHolder {
         return MenuAdapter.MyViewHolder(
             MenuLayoutBinding.inflate(
@@ -43,6 +47,8 @@ class MenuAdapter(private val context: Context , private val menuList : List<Men
             Picasso.get().load(menuList[position].image).into(imageView18)
         }
         holder.binding.addBtn.setOnClickListener(){
+            myModel = ViewModelProvider(context).get(MenuModel::class.java)
+            myModel.data.add(0 ,menuList[position] )
             it.findNavController().navigate(R.id.action_fragment2_to_menuItemFragement)
         }
     }

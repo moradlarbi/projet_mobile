@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynavigation.databinding.ShoppingCardBinding
+import com.squareup.picasso.Picasso
 
-class CartAdapter(private val context: Context, private var cartList : List<Menu>) : RecyclerView.Adapter<CartAdapter.MyViewHolder>() {
+class CartAdapter(private val context: Context, private var cartList : List<CartItem>) : RecyclerView.Adapter<CartAdapter.MyViewHolder>() {
     var onItemClick: ((Unit) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartAdapter.MyViewHolder {
         return CartAdapter.MyViewHolder(
@@ -31,14 +32,14 @@ class CartAdapter(private val context: Context, private var cartList : List<Menu
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.apply {
             textView.text = cartList[position].name
-            textView6.text = cartList[position].nbItems.toString()
+            textView6.text = cartList[position].quantity.toString()
+            Picasso.get().load(cartList[position].image).into(imageView6)
         }
 
         holder.binding.btnPlus.setOnClickListener(){
             try {
-                val currentValue = cartList[position].nbItems
+                val currentValue = cartList[position].quantity
                 val newValue = currentValue + 1
-                cartList[position].nbItems = newValue
                 holder.binding.textView6.text = newValue.toString()
             }
             catch (e: Exception){
