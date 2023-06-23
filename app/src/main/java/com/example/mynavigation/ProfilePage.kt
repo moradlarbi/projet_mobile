@@ -1,10 +1,14 @@
 package com.example.mynavigation
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.example.mynavigation.databinding.FragmentProfilePageBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +24,8 @@ class ProfilePage : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding: FragmentProfilePageBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,26 +40,57 @@ class ProfilePage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_page, container, false)
+        binding = FragmentProfilePageBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfilePage.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfilePage().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (!isLoggedIn()) {
+            navigateToLogin()
+            return
+        }
+
+        // Set user information if logged in
+        val sharedPreferences = requireContext().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        binding.usernameinput.setText(sharedPreferences.getString("username", ""))
+        binding.emailinput.setText(sharedPreferences.getString("email", ""))
+        binding.phoneinput.setText(sharedPreferences.getString("phone", ""))
+
+
+        binding.logout.setOnClickListener {
+            logout()
+        }
+    }
+
+    private fun isLoggedIn(): Boolean {
+        val sharedPreferences = requireContext().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", null)
+        val email = sharedPreferences.getString("email", null)
+        val phone = sharedPreferences.getString("phone", null)
+
+        // Check if any of the required fields is missing to determine if the user is logged in
+        return !(username.isNullOrEmpty() || email.isNullOrEmpty() || phone.isNullOrEmpty())
+    }
+
+    private fun navigateToLogin() {
+        // Navigate to the login fragment
+        findNavController().navigate(R.id.action_profile_to_login)
+    }
+
+    private fun logout() {
+        val sharedPreferences = requireContext().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove("username")
+        editor.remove("email")
+        editor.remove("phone")
+        editor.apply()
+
+        Toast.makeText(requireContext(), "Logged out", Toast.LENGTH_SHORT).show()
+
+        // Perform any additional actions after logout
+        // For example, navigate to the login fragment
+        findNavController().navigate(R.id.action_profile_to_home)
     }
 }

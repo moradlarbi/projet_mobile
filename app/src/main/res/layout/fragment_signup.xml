@@ -14,7 +14,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#F1E5E5"
         android:hint="Username"
         android:textColor="#FFFFFF"
@@ -25,11 +25,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/password_edit_text"
+        android:id="@+id/email_imput"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginHorizontal="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="22dp"
         android:backgroundTint="#EDE3E3"
         android:hint="Password"
         android:inputType="textPassword"
@@ -39,6 +39,38 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="@+id/fullname_edit_text"
         app:layout_constraintTop_toBottomOf="@+id/fullname_edit_text" />
+
+    <EditText
+        android:id="@+id/phoneNumber_input"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginTop="22dp"
+        android:backgroundTint="#EDE3E3"
+        android:hint="Phone Number"
+        android:inputType="textPassword"
+        android:textColor="#F3EFEF"
+        android:textColorHint="#F4EFEF"
+        app:layout_constraintEnd_toEndOf="@+id/email_imput"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/email_imput"
+        app:layout_constraintTop_toBottomOf="@+id/email_imput" />
+
+    <EditText
+        android:id="@+id/password_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginTop="22dp"
+        android:backgroundTint="#EDE3E3"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#F3EFEF"
+        android:textColorHint="#F4EFEF"
+        app:layout_constraintEnd_toEndOf="@+id/phoneNumber_input"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/phoneNumber_input"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber_input" />
 
     <Button
         android:id="@+id/login_button"
@@ -71,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="Login to your account"
+        android:text="Create a new account"
         android:textColor="#F4942C"
         android:textSize="20sp"
         android:textStyle="bold"

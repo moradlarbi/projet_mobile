@@ -1,5 +1,6 @@
 package com.example.mynavigation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,23 +46,33 @@ class MenuItemFragement: Fragment() {
         // Initialize your CartDatabaseHelper
         cartDatabaseHelper = DatabaseHelper(requireContext())
 
+        // Check if the user is logged in
+        val sharedPreferences = requireContext().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.contains("username") // Check if username exists in SharedPreferences
+
         // Set up the button click listener
         button.setOnClickListener {
-            // Create a new CartItem object
-            val newItem = CartItem(
-                id = menuItem.id, // Set the ID as needed
-                name = menuItem.name,
-                price = menuItem.price, // Set the price as needed
-                image = menuItem.image,
-                ingredients= menuItem.ingredients ,
-                restaurantId = menuItem.restaurantId,
-                quantity = 1 // Set the quantity as needed
-            )
+            if (isLoggedIn) {
+                // Create a new CartItem object
+                val newItem = CartItem(
+                    id = menuItem.id, // Set the ID as needed
+                    name = menuItem.name,
+                    price = menuItem.price, // Set the price as needed
+                    image = menuItem.image,
+                    ingredients= menuItem.ingredients ,
+                    restaurantId = menuItem.restaurantId,
+                    quantity = 1 // Set the quantity as needed
+                )
 
-            // Add the new item to the table
-            cartDatabaseHelper.addToCart(newItem)
+                // Add the new item to the table
+                cartDatabaseHelper.addToCart(newItem)
 
-            Toast.makeText(requireContext(), "Item added to cart", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Item added to cart", Toast.LENGTH_SHORT).show()
+            } else {
+                // User is not logged in, navigate to the login fragment
+                findNavController().navigate(R.id.action_menuItemFragement_to_login)
+            }
+
         }
 
     }

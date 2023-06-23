@@ -15,51 +15,39 @@ import com.example.mynavigation.R
 import com.example.mynavigation.databinding.ActivityMainBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
 
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide()
-        val view = binding.root
-        setContentView(view)
-        // back Button
-        val navHostFragment = supportFragmentManager.
-        findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navController = navHostFragment.navController
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
 
-
-        binding.bottomNavigation.setOnItemSelectedListener{
-            when (it.itemId) {
-                R.id.menu_home -> replaceFragment(Fragment1())
-                R.id.menu_profile -> replaceFragment(ProfilePage())
-                R.id.menu_card -> replaceFragment(Mycard())
-                R.id.menu_restos -> replaceFragment(Fragment1())
-                R.id.menu_notif -> replaceFragment(Notifications())
+        binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_home -> navController.navigate(R.id.fragment1)
+                R.id.menu_profile -> navController.navigate(R.id.profilePage)
+                R.id.menu_card -> navController.navigate(R.id.mycardPage)
+                R.id.menu_restos -> navController.navigate(R.id.fragment1)
+                R.id.menu_notif -> navController.navigate(R.id.notificationPage)
             }
             true
         }
-
     }
 
-
-
-
-
-    private fun replaceFragment(fragment : Fragment){
-          if(fragment != null){
-              val transaction = supportFragmentManager.beginTransaction()
-              transaction.replace(R.id.fragmentContainerView, fragment)
-              transaction.addToBackStack(null)
-              transaction.commit()
-          }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.fragmentContainerView)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
 }

@@ -106,13 +106,26 @@ class DatabaseHelper(context: Context) :
 
 
     // Delete an item from the cart
-    fun deleteCartItem(itemId: Int) {
+    fun deleteItemFromDatabase(itemId: Int) {
         val database = writableDatabase
 
         val selection = "$COLUMN_ID = ?"
         val selectionArgs = arrayOf(itemId.toString())
 
         database.delete(TABLE_NAME, selection, selectionArgs)
+    }
+
+    fun updateQuantityInDatabase(itemId: Int, newQuantity: Int) {
+        val database = writableDatabase
+
+        val values = ContentValues().apply {
+            put(COLUMN_QUANTITY, newQuantity)
+        }
+
+        val selection = "$COLUMN_ID = ?"
+        val selectionArgs = arrayOf(itemId.toString())
+
+        database.update(TABLE_NAME, values, selection, selectionArgs)
     }
 
 }
