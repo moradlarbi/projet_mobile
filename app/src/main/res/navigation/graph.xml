@@ -14,15 +14,7 @@
             android:id="@+id/action_fragment1_to_fragment2"
             app:destination="@id/fragment2" />
     </fragment>
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.mynavigation.Fragment2"
-        android:label="fragment_2"
-        tools:layout="@layout/fragment_2" >
-        <action
-            android:id="@+id/action_fragment2_to_menuItemFragement"
-            app:destination="@id/menuItemFragement" />
-    </fragment>
+
     <fragment
         android:id="@+id/loginFragement"
         android:name="com.example.mynavigation.LoginFragement"
@@ -35,6 +27,22 @@
             android:id="@+id/action_loginFragement_to_fragment1"
             app:destination="@id/fragment1" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.mynavigation.Fragment2"
+        android:label="fragment_2"
+        tools:layout="@layout/fragment_2" >
+
+        <action
+            android:id="@+id/action_fragment2_to_menuItemFragement"
+            app:destination="@id/menuItemFragement" />
+        <action
+            android:id="@+id/action_fragment2_to_loginFragment"
+            app:destination="@id/loginFragement" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.mynavigation.RegisterFragement"
@@ -78,10 +86,44 @@
         >
         <action
             android:id="@+id/action_stepSliderThree_to_loginFragement"
-            app:destination="@id/loginFragement" />
+            app:destination="@id/fragment1" />
     </fragment>
     <fragment
         android:id="@+id/menuItemFragement"
         android:name="com.example.mynavigation.MenuItemFragement"
-        android:label="MenuItemFragement" />
+        android:label="MenuItemFragement"
+        >
+        <action
+            android:id="@+id/action_menuItemFragement_to_login"
+            app:destination="@id/loginFragement" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilePage"
+        android:name="com.example.mynavigation.ProfilePage"
+        android:label="ProfilePage"
+        >
+
+        <action
+            android:id="@+id/action_profile_to_home"
+            app:destination="@id/fragment1" />
+        <action
+            android:id="@+id/action_profile_to_login"
+            app:destination="@id/loginFragement" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationPage"
+        android:name="com.example.mynavigation.Notifications"
+        android:label="NotificationPage"
+        >
+
+    </fragment>
+    <fragment
+        android:id="@+id/mycardPage"
+        android:name="com.example.mynavigation.Mycard"
+        android:label="MyCardPage"
+        >
+        <action
+            android:id="@+id/action_mycard_to_login"
+            app:destination="@id/loginFragement" />
+    </fragment>
 </navigation>

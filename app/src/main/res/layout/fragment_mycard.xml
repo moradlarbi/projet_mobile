@@ -23,9 +23,10 @@
         android:src="@drawable/appbg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.579" />
+        app:layout_constraintVertical_bias="0.918" />
 
     <TextView
         android:id="@+id/textView6"
@@ -42,16 +43,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="415dp"
+        android:layout_height="397dp"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView7"
@@ -78,4 +76,90 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="370dp"
+        android:layout_height="115dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="391dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Number of items:"
+                android:textFontWeight="600"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/totalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:text="Number of items:"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+            <TextView
+                android:id="@+id/nbItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:text="Number of items:"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView25" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:textFontWeight="600"
+                android:text="Total Price:"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/textView25"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="50dp"
+        android:backgroundTint="#F4942C"
+        android:paddingVertical="15dp"
+        android:text="Buy Now"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:cornerRadius="30dp"
+        app:icon="@drawable/shopping_cart"
+        app:iconGravity="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

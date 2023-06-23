@@ -1,5 +1,6 @@
 package com.example.mynavigation
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +14,7 @@ import com.example.mynavigation.databinding.FragmentNotificationsBinding
 
 class Mycard : Fragment() {
     private lateinit var binding: FragmentMycardBinding
-
+    private lateinit var cartDatabaseHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,26 +35,60 @@ class Mycard : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        cartDatabaseHelper = DatabaseHelper(requireContext())
+
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        binding.recyclerView.adapter = CartAdapter(requireActivity() ,loadData()).apply {
+        binding.recyclerView.adapter = CartAdapter(requireActivity() ,loadData() , this@Mycard).apply {
             onItemClick = { restaurant ->
                 // Handle item click and pass data to Fragment2
                 // Set the data in MyModel
                 //always add it in position 0
                 Toast.makeText(context , "de" , Toast.LENGTH_SHORT).show()
             } }
+        // Calculate total price and number of items
+        val cartItems = loadData()
+        val totalPrice = cartItems.sumOf { it.price * it.quantity }
+        val numberOfItems = cartItems.sumOf { it.quantity }
+
+        // Set the values in the corresponding TextViews
+        binding.totalPrice.text = "${totalPrice} DA"
+        binding.nbItems.text = "${numberOfItems} Items"
+
+        // Handle buy button click
+        binding.buyButton.setOnClickListener {
+            if (isLoggedIn()) {
+                Toast.makeText(requireContext(), "Buy order", Toast.LENGTH_SHORT).show()
+            } else {
+                // User is not logged in, navigate to the login page
+                findNavController().navigate(R.id.action_mycard_to_login)
+            }
+        }
 
     }
-    fun loadData(): List<Menu> {
 
-        val data = mutableListOf<Menu>()
+    private fun isLoggedIn(): Boolean {
+        // Check if the user is logged in
+        val sharedPreferences = requireContext().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.contains("username")
+        return isLoggedIn
+    }
 
-        data.add(Menu("Menu 1" , 5 ))
-        data.add(Menu("Menu 1" , 5 ))
-        data.add(Menu("Menu 1" , 5 ))
-        data.add(Menu("Menu 1" , 5 ))
+    fun loadData(): List<CartItem> {
 
-        return data
+        // Retrieve menu items from the database
+        val cartItems = cartDatabaseHelper.getCartItems()
+
+        return cartItems
+    }
+
+     fun updateCartSummary() {
+
+        val cartItems = loadData()
+        val totalPrice = cartItems.sumOf { it.price * it.quantity }
+        val numberOfItems = cartItems.sumOf { it.quantity }
+
+        binding.totalPrice.text = "${totalPrice} DA"
+        binding.nbItems.text = "${numberOfItems} Items"
     }
 
 }

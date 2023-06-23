@@ -10,7 +10,9 @@ import com.example.mynavigation.entity.RestaurantModel
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface Endpoint {
@@ -23,6 +25,21 @@ interface Endpoint {
 
     @GET("menu/restaurant/{restaurantId}")
     suspend fun getResaturantMenu(@Path("restaurantId") restaurantId: Int): Response<List<MenuItem>>
+
+    @POST("auth/signup")
+    suspend fun signUp(
+        @Body userData: UserData
+    ): Response<SignUpResponse>
+
+    @POST("rate")
+    suspend fun rateRestaurant(
+        @Body userData: rateData
+    ): Response<addDataRes>
+
+    @POST("auth/login")
+    suspend fun logIn(
+        @Body userData: loginData
+    ): Response<SignUpResponse>
 
     companion object {
         private const val BASE_URL = url
@@ -44,3 +61,40 @@ interface Endpoint {
     }
 }
 
+
+
+data class SignUpResponse(
+    val status: Int,
+    val message: String,
+    val data: SignUpData
+)
+
+data class UserData(
+
+    val username: String,
+    val email: String,
+    val password: String,
+    val phone: String
+)
+data class SignUpData(
+    val id: Int,
+    val username: String,
+    val email: String,
+    val password: String,
+    val phone: String
+)
+
+data class loginData(
+    val email: String,
+    val password: String,
+)
+
+data class rateData(
+   val rating:Int,
+    val userId:Int,
+val restaurantId:Int
+)
+
+data class addDataRes(
+    val msg:String,
+)

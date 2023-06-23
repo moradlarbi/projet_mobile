@@ -6,6 +6,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,11 +50,15 @@ class Fragment1 : Fragment() {
             onItemClick = { restaurant ->
                 // Handle item click and pass data to Fragment2
                 // Set the data in MyModel
-                //always add it in position 0
-                print(restaurant) ;
-                myModel.data.add(0,restaurant)
+                // Always add it at position 0
+                print(restaurant)
+                myModel.data.add(0, restaurant)
 
-                findNavController().navigate(R.id.action_fragment1_to_fragment2)
+                // Check if the current destination is Fragment1 before navigating to Fragment2
+                val currentDestination = findNavController().currentDestination?.id
+                if (currentDestination == R.id.fragment1) {
+                    findNavController().navigate(R.id.action_fragment1_to_fragment2)
+                }
             } }
 
 
