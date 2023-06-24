@@ -22,10 +22,7 @@ import com.example.mynavigation.databinding.Fragment2Binding
 import com.example.mynavigation.retrofit.Endpoint
 import com.example.mynavigation.retrofit.rateData
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 class Fragment2 : Fragment() {
@@ -116,7 +113,18 @@ class Fragment2 : Fragment() {
         }
 
 
+
         loadMenuItems();
+        CoroutineScope(Dispatchers.Main).launch {
+            val userRating = getUserResRating()
+            // Use the rating value here
+            if(userRating!= -1){
+                colorRatingBar(userRating) ;
+            }
+        }
+
+
+
         val ratingBar = binding.ratingBar2
 
         ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
@@ -130,7 +138,6 @@ class Fragment2 : Fragment() {
             // Check if the user is logged in
             if (userId == -1) {
                 // User is not logged in, redirect to the login
-
 
             }
 
@@ -153,9 +160,8 @@ class Fragment2 : Fragment() {
                     // Handle the response
                     if (response.isSuccessful && response.body() != null) {
                         val responseRate = response.body()!!
+                    // Show a success toast
 
-                        // Show a success toast
-                        Toast.makeText(requireContext(), "Rating Done", Toast.LENGTH_SHORT).show()
                     } else {
                         // Handle unsuccessful sign-up
                         // Show an error toast
@@ -207,6 +213,41 @@ class Fragment2 : Fragment() {
                 Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    suspend fun getUserResRating():Int{
+        var rating = -1
+        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            requireActivity().runOnUiThread {
+                Toast.makeText(requireActivity(), "Une erreur s'est produite", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Get the user ID from SharedPreferences
+        val sharedPreferences = requireActivity().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        val userId = sharedPreferences.getInt("id", -1)
+
+        val response = CoroutineScope(Dispatchers.Main).async(exceptionHandler) {
+            try {
+                Endpoint.createEndpoint().getUserRate(userId, myModel.data[0].id)
+            } catch (e: Exception) {
+                null
+            }
+        }.await()
+
+        if (response?.isSuccessful == true && response.body() != null) {
+            val ratingRes = response.body()!!
+            rating = ratingRes.rating
+        } else {
+            Toast.makeText(requireActivity(), "Une erreur s'est produite", Toast.LENGTH_SHORT).show()
+        }
+
+        return rating
+    }
+
+    fun colorRatingBar(rat : Int){
+        val ratingBar = binding.ratingBar2
+        ratingBar.rating = rat.toFloat() // set default rating
     }
 
 }

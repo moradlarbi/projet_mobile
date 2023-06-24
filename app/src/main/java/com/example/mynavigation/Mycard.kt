@@ -57,7 +57,7 @@ class Mycard : Fragment() {
         // Handle buy button click
         binding.buyButton.setOnClickListener {
             if (isLoggedIn()) {
-                Toast.makeText(requireContext(), "Buy order", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_mycard_to_orderNotes)
             } else {
                 // User is not logged in, navigate to the login page
                 findNavController().navigate(R.id.action_mycard_to_login)

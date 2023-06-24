@@ -62,7 +62,7 @@ class RegisterFragement : Fragment() {
                         // Set user information in SharedPreferences if sign-up is successful
                         val sharedPreferences = requireContext().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
-                        editor.putString("id", responseData.id.toString())
+                        editor.putInt("id", responseData.id)
                         editor.putString("username", responseData.username)
                         editor.putString("email", responseData.email)
                         editor.putString("phone", responseData.phone)
