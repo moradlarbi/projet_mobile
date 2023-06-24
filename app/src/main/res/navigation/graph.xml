@@ -40,7 +40,9 @@
         <action
             android:id="@+id/action_fragment2_to_loginFragment"
             app:destination="@id/loginFragement" />
-
+        <action
+            android:id="@+id/action_fragment2_to_reviewPage"
+            app:destination="@id/reviewPage" />
     </fragment>
 
     <fragment
@@ -93,9 +95,13 @@
         android:name="com.example.mynavigation.MenuItemFragement"
         android:label="MenuItemFragement"
         >
+
         <action
             android:id="@+id/action_menuItemFragement_to_login"
             app:destination="@id/loginFragement" />
+        <action
+            android:id="@+id/action_rest_to_review"
+            app:destination="@id/reviewPage" />
     </fragment>
     <fragment
         android:id="@+id/profilePage"
@@ -125,5 +131,30 @@
         <action
             android:id="@+id/action_mycard_to_login"
             app:destination="@id/loginFragement" />
+        <action
+            android:id="@+id/action_mycard_to_orderNotes"
+            app:destination="@id/orderNotesPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderNotesPage"
+        android:name="com.example.mynavigation.OrderNotes"
+        android:label="OrderNotes"
+        >
+        <action
+            android:id="@+id/action_orderNote_to_OrderList"
+            app:destination="@id/orderList" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderList"
+        android:name="com.example.mynavigation.OrdersList"
+        android:label="OrderList"
+        >
+    </fragment>
+
+    <fragment
+        android:id="@+id/reviewPage"
+        android:name="com.example.mynavigation.ReviewRestaurant"
+        android:label="ReviewRestaurant"
+        >
     </fragment>
 </navigation>

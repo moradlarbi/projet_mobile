@@ -43,6 +43,10 @@ class MenuItemFragement: Fragment() {
 
         val button = view.findViewById<Button>(R.id.button)
 
+        binding.reviewRestaurant.setOnClickListener(){
+            findNavController().navigate(R.id.action_rest_to_review)
+        }
+
         // Initialize your CartDatabaseHelper
         cartDatabaseHelper = DatabaseHelper(requireContext())
 

@@ -14,6 +14,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import java.time.LocalDateTime
 
 interface Endpoint {
 
@@ -40,6 +41,30 @@ interface Endpoint {
     suspend fun logIn(
         @Body userData: loginData
     ): Response<SignUpResponse>
+
+    @GET("rate/restaurant/{restaurantId}")
+    suspend fun getRestaurantRating(@Path("restaurantId") restaurantId: String): Response<RestaurantRating>
+
+    @GET("rate/rate/{userId}/{restaurantId}")
+    suspend fun getUserRate(
+        @Path("userId") userId: Int,
+        @Path("restaurantId") restaurantId: Int
+    ): Response<UserRate>
+
+    @POST("order")
+    suspend fun addOrder(
+        @Body orderData: OrderData
+    ): Response<addDataRes>
+
+    @POST("review")
+    suspend fun addReview(
+        @Body reviewData: ReviewData
+    ): Response<addDataRes>
+
+    @GET("order/{userId}")
+    suspend fun getOrders(
+        @Path("userId") userId: Int
+    ): Response<List<OrderResponse>>
 
     companion object {
         private const val BASE_URL = url
@@ -98,3 +123,41 @@ val restaurantId:Int
 data class addDataRes(
     val msg:String,
 )
+
+data class RestaurantRating(
+    val averageRating:String
+)
+
+data class UserRate(
+    val rating: Int
+)
+
+data class OrderData(
+    val userId: Int,
+    val items: List<OrderItem>,
+    val location: String,
+    val restaurantId: Int ,
+    val note:String
+)
+
+data class OrderItem(
+    val id: Int,
+    val quantity: Int
+)
+
+data class OrderResponse(
+    val id: Int,
+    val note: String,
+    val location: String,
+    val createdAt: String,
+    val status: String,
+    val userId: Int,
+    val restaurantId: Int
+)
+
+data class ReviewData(
+    val review: String,
+    val userId: Int,
+    val restaurantId: Int
+)
+

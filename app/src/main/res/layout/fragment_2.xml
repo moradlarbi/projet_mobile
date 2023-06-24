@@ -33,7 +33,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="408dp"
-        android:layout_height="350dp"
+        android:layout_height="370dp"
 
         android:layout_marginTop="-20dp"
         app:cardBackgroundColor="@color/black"
@@ -45,7 +45,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="339dp">
+            android:layout_height="369dp">
 
             <TextView
                 android:id="@+id/textView9"

@@ -4,10 +4,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mynavigation.databinding.RestaurantLayoutBinding
+import com.example.mynavigation.retrofit.Endpoint
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 public class RestaurantAdapter(val data:List<Restaurant>, val ctxt: Context):RecyclerView.Adapter<RestaurantAdapter.MyViewHolder>(){
     var onItemClick: ((Restaurant) -> Unit)? = null
@@ -81,6 +88,30 @@ public class RestaurantAdapter(val data:List<Restaurant>, val ctxt: Context):Rec
 
         holder.binding.imageContainer.setOnClickListener {
             onItemClick?.invoke(data[position])
+        }
+
+        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+
+                Toast.makeText(ctxt, "Une erreur s'est  ", Toast.LENGTH_SHORT).show()
+
+        }
+        CoroutineScope(Dispatchers.Main).launch(exceptionHandler) {
+            try {
+                val response = Endpoint.createEndpoint().getRestaurantRating(data[position].id.toString())
+
+                // Handle the response
+                if (response.isSuccessful && response.body() != null) {
+                    val resRating = response.body()!!
+                    holder.binding.restaurantRating.text  = resRating.averageRating.toString();
+                } else {
+                    // Handle unsuccessful sign-up
+                    // Show an error toast
+                    Toast.makeText(ctxt, data[position].id.toString(), Toast.LENGTH_SHORT).show()
+
+                }
+            } catch (e: Exception) {
+                Toast.makeText(ctxt, "An error occurred: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
         }
 
 

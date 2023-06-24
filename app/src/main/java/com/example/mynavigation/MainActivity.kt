@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_home -> navController.navigate(R.id.fragment1)
                 R.id.menu_profile -> navController.navigate(R.id.profilePage)
                 R.id.menu_card -> navController.navigate(R.id.mycardPage)
-                R.id.menu_restos -> navController.navigate(R.id.fragment1)
+                R.id.menu_restos -> navController.navigate(R.id.orderList)
                 R.id.menu_notif -> navController.navigate(R.id.notificationPage)
             }
             true
