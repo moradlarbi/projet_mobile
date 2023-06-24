@@ -1,12 +1,9 @@
 package com.example.mynavigation.retrofit
 
-import android.widget.Toast
 import com.example.movieexample.url
-import com.example.mynavigation.MenuItem
-import com.example.mynavigation.Restaurant
-import com.example.mynavigation.entity.Movie
+import com.example.mynavigation.entity.MenuItem
+import com.example.mynavigation.models.Restaurant
 import com.example.mynavigation.entity.MovieResponse
-import com.example.mynavigation.entity.RestaurantModel
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,7 +11,6 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
-import java.time.LocalDateTime
 
 interface Endpoint {
 

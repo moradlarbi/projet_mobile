@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="com.example.mynavigation.Fragment1"
+        android:name="com.example.mynavigation.views.Fragment1"
         android:label="fragment_1"
         tools:layout="@layout/fragment_1" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/loginFragement"
-        android:name="com.example.mynavigation.LoginFragement"
+        android:name="com.example.mynavigation.views.LoginFragement"
         android:label="fragment_login_fragement"
         tools:layout="@layout/fragment_login_fragement" >
         <action
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="com.example.mynavigation.Fragment2"
+        android:name="com.example.mynavigation.views.Fragment2"
         android:label="fragment_2"
         tools:layout="@layout/fragment_2" >
 
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.mynavigation.RegisterFragement"
+        android:name="com.example.mynavigation.views.RegisterFragement"
         android:label="Register Fragment" />
     <fragment
         android:id="@+id/welcomeScreen"
@@ -92,7 +92,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuItemFragement"
-        android:name="com.example.mynavigation.MenuItemFragement"
+        android:name="com.example.mynavigation.views.MenuItemFragement"
         android:label="MenuItemFragement"
         >
 
@@ -118,14 +118,14 @@
     </fragment>
     <fragment
         android:id="@+id/notificationPage"
-        android:name="com.example.mynavigation.Notifications"
+        android:name="com.example.mynavigation.views.Notifications"
         android:label="NotificationPage"
         >
 
     </fragment>
     <fragment
         android:id="@+id/mycardPage"
-        android:name="com.example.mynavigation.Mycard"
+        android:name="com.example.mynavigation.views.Mycard"
         android:label="MyCardPage"
         >
         <action
@@ -137,7 +137,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderNotesPage"
-        android:name="com.example.mynavigation.OrderNotes"
+        android:name="com.example.mynavigation.views.OrderNotes"
         android:label="OrderNotes"
         >
         <action
@@ -146,14 +146,14 @@
     </fragment>
     <fragment
         android:id="@+id/orderList"
-        android:name="com.example.mynavigation.OrdersList"
+        android:name="com.example.mynavigation.entity.OrdersList"
         android:label="OrderList"
         >
     </fragment>
 
     <fragment
         android:id="@+id/reviewPage"
-        android:name="com.example.mynavigation.ReviewRestaurant"
+        android:name="com.example.mynavigation.views.ReviewRestaurant"
         android:label="ReviewRestaurant"
         >
     </fragment>
