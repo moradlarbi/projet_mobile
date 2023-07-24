@@ -6,5 +6,5 @@ data class MenuItem(
 val price: Int,
 val image: String,
 val ingredients: String,
-val restaurantId: Int
+val restaurantId: Int 
 )
